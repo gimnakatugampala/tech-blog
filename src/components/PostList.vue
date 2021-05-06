@@ -6,12 +6,13 @@
 
 <script>
 import SinglePost from '@/components/SinglePost.vue'
+import postFilter from '../composables/filter.js'
 
 export default {
     props:['posts'],
     components:{SinglePost},
     setup() {
-        
+    
     }
 }
 </script>
