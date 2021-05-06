@@ -1,19 +1,25 @@
 <template>
-    <div class="card">
-    <h5 class="card-header">Featured</h5>
+    <div class="card" v-for="post in posts" :key="post.id">
+    <h5 class="card-header">#{{post.id}} - {{post.title}}</h5>
     <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">{{post.body}}</h5>
+    <a href="#" class="btn btn-primary mx-2" v-for="tags in post.tags">#{{tags}}</a>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-    setup() {
-        
-    },
+    props:['posts'],
+    setup(posts) {
+        console.log(posts)
+    }
 }
 </script>
+
+<style>
+.card-body{
+    background:rgb(189, 176, 176)
+}
+</style>
 

@@ -3,7 +3,7 @@
    <Navbar />
    <div class="container mt-5">
      <Filter />
-     <PostList />
+     <PostList :posts="posts"/>
    </div>
   </div>
 </template>
@@ -14,6 +14,7 @@
 import Navbar from '@/components/Navbar.vue'
 import Filter from '@/components/Filter.vue'
 import PostList from '@/components/PostList.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Home',
@@ -21,6 +22,29 @@ export default {
     Navbar,
     Filter,
     PostList
+  },
+  setup(){
+    const posts = ref([])
+    const error = ref(null)
+
+    const load = async () =>{
+      try{
+        let data = await fetch('http://localhost:3000/blogs')
+        if(!data.ok){
+          throw Error('No Data Available!')
+        }
+        posts.value = await data.json();
+      }
+      catch(err){
+        error.value = err.message
+        console.log(error.value)
+      }
+    }
+
+    load()
+
+    return {posts}
   }
 }
+
 </script>
