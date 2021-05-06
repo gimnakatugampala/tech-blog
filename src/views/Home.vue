@@ -2,11 +2,7 @@
   <div class="home">
    <Navbar />
    <div class="container mt-5">
-
-     <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search Post" aria-label="Example text with button addon" aria-describedby="button-addon1">
-</div>
-
+     <Filter />
      <div v-if="posts.length">
      <PostList :posts="posts"/>
      </div>
@@ -19,7 +15,7 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import Filter from '@/components/Filter.vue'
 import Navbar from '@/components/Navbar.vue'
 import PostList from '@/components/PostList.vue'
 import getPosts from '../composables/getPosts.js'
@@ -30,6 +26,7 @@ export default {
   name: 'Home',
   components: {
     Navbar,
+    Filter,
     PostList
   },
   setup(){
