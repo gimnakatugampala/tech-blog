@@ -14,7 +14,8 @@
 import Navbar from '@/components/Navbar.vue'
 import Filter from '@/components/Filter.vue'
 import PostList from '@/components/PostList.vue'
-import { ref } from 'vue'
+import getPosts from '../composables/getPosts.js'
+
 
 export default {
   name: 'Home',
@@ -24,22 +25,8 @@ export default {
     PostList
   },
   setup(){
-    const posts = ref([])
-    const error = ref(null)
 
-    const load = async () =>{
-      try{
-        let data = await fetch('http://localhost:3000/blogs')
-        if(!data.ok){
-          throw Error('No Data Available!')
-        }
-        posts.value = await data.json();
-      }
-      catch(err){
-        error.value = err.message
-        console.log(error.value)
-      }
-    }
+    const {posts ,error ,load} = getPosts()
 
     load()
 
