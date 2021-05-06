@@ -3,7 +3,12 @@
    <Navbar />
    <div class="container mt-5">
      <Filter />
+     <div v-if="posts.length">
      <PostList :posts="posts"/>
+     </div>
+      <div v-else>
+       <h1>Loading...</h1>
+      </div>
    </div>
   </div>
 </template>
